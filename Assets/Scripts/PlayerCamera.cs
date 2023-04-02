@@ -20,7 +20,7 @@ public class PlayerCamera : MonoBehaviour
     [Range(0.1f, 9f)] [SerializeField] float sensitivity = 2f;
     [Tooltip("Limits vertical camera rotation. Prevents the flipping that happens when rotation goes above 90.")]
     [Range(0f, 90f)] [SerializeField] float yRotationLimit = 88f;
-    //[Range(0f, 180f)] [SerializeField] float xRotationLimit = 88f;
+    [Range(0f, 180f)] [SerializeField] float xRotationLimit = 88f;
 
     Vector2 rotation = Vector2.zero;
     const string xAxis = "Mouse X"; //Strings in direct code generate garbage, storing and re-using them creates no garbage
@@ -36,7 +36,7 @@ public class PlayerCamera : MonoBehaviour
         rotation.x += Input.GetAxis(xAxis) * sensitivity;
         rotation.y += Input.GetAxis(yAxis) * sensitivity;
         rotation.y = Mathf.Clamp(rotation.y, -yRotationLimit, yRotationLimit);
-        //rotation.x = Mathf.Clamp(rotation.x, -xRotationLimit, xRotationLimit);
+        rotation.x = Mathf.Clamp(rotation.x, -xRotationLimit, xRotationLimit);
         var xQuat = Quaternion.AngleAxis(rotation.x, Vector3.up);
         var yQuat = Quaternion.AngleAxis(rotation.y, Vector3.left);
 
